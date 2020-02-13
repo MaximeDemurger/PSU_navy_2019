@@ -73,7 +73,6 @@ int compare_pos(char **tab, int boatSize)
 int checkBoat_size(char *str)
 {
     int boatSize = 0;
-    int i = 0;
     char **tab = NULL;
 
     if (str == NULL)

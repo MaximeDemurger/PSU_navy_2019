@@ -14,8 +14,10 @@ char *my_strdup(char const *str)
     char *dest = malloc(sizeof(char) * (my_strlen(str) + 1));
     int i = 0;
 
-    if (!dest)
+    if (!dest || !str) {
+        free(dest);
         return NULL;
+    }
     while (str[i]) {
         dest[i] = str[i];
         i++;
