@@ -6,14 +6,25 @@
 */
 
 #include "../include/navy.h"
+#include <fcntl.h>
+#include <unistd.h>
 #include <stdio.h>
 
 int navy(char **av)
 {
-    char **map;
+    char **my_pos = NULL;
+    char **enemy_pos = NULL;
+    int fd = 0;
+    int i = 0;
+    char **tab = NULL;
 
-    map = map_navy();
-    if (check_files(av) == 84)
+    if (av[1] == NULL) {
         return 84;
+    }
+    fd = open(av[1], O_RDONLY);
+    my_pos = map_navy();
+    if ((tab = check_files(fd)) == NULL)
+        return 84;
+    my_pos = add_boat_pos(my_pos, tab);
     return 0;
 }

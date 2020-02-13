@@ -88,18 +88,19 @@ int checkBoat_size(char *str)
     return 0;
 }
 
-int check_files(char **av)
+char **check_files(int fd)
 {
-    int fd;
     char *str = NULL;
+    char **tab = malloc(sizeof(char *) * 5);
+    int i = 0;
 
-    if (av[1] == NULL)
-        return 84;
-    fd = open(av[1], O_RDONLY);
     while ((str = get_next_line(fd))) {
         if (checkBoat_size(str) == 84)
-            return 84;
+            return NULL;
+        tab[i] = my_strdup(str);
+        i++;
         free(str);
     }
-    return 0;
+    tab[i] = NULL;
+    return tab;
 }
