@@ -90,7 +90,7 @@ int checkBoat_size(char *str)
 char **check_files(int fd)
 {
     char *str = NULL;
-    char **tab = malloc(sizeof(char *) * 5);
+    char **tab = malloc(sizeof(char *) * 6);
     int i = 0;
 
     while ((str = get_next_line(fd))) {

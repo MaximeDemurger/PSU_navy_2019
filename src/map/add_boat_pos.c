@@ -12,84 +12,77 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int find_car(int *line, int *col, char a, char b)
+int find_pos(int *line, int *col, char letterMap, char numberMap)
 {
-    int alpha = 65;
-    int nbr = 49;
+    char letter = 'A';
+    char number = '1';
 
-    *line = 2;
+    *line = 1;
     *col = 2;
-    while (alpha < 72 && alpha + 48 != a) {
+    while (letter != letterMap) {
+        letter++;
         *col += 2;
-        alpha++;
     }
-    while (nbr < 57 && nbr + 48 != b) {
+    while (number <= numberMap) {
         *line += 1;
-        nbr++;
+        number++;
     }
     return 0;
 }
 
-char **add_letter(char a, char b, int boatSize, char **map)
+char **add_letter(char **tab, utils_t *utils, char **map)
 {
     int line = 0;
     int col = 0;
 
-printf("La map vaut : %p\n", map);
-printf("la première ligne vaut : %p\n", map[line]);
-    find_car(&line, &col, a, b);
-    printf("line : %d et col : %d\n", line, col);
-    if (a < b) {
-        while (a < b) {
-            printf("Avant y'avait ça : %c\n", map[line][col]);
-            map[line][col] = (char)boatSize + 48;
-            a++;
+    find_pos(&line, &col, tab[1][0], tab[1][1]);
+    if (tab[1][0] < tab[2][0]) {
+        while (tab[1][0] < tab[2][0] + 1) {
+            map[line][col] = utils->boatSize + 48;
+            tab[1][0]++;
             col += 2;
         }
-    } else if (a > b) {
-        while (a > b) {
-            map[line][col] = (char)boatSize + 48;
-            b++;
+    } else if (tab[1][0] > tab[2][0]) {
+        while (tab[1][0] + 1 > tab[2][0]) {
+            map[line][col] = utils->boatSize + 48;
+            tab[2][0]++;
             col -= 2;
         }
     }
     return map;
 }
 
-char **add_nbr(int *array, int boatSize, char **tab, char **map)
+char **add_nbr(utils_t *utils, char **tab, char **map)
 {
     int line;
     int col;
 
-    find_car(&line, &col, tab[1][0], tab[1][1]);
-    if (array[0] < array[1]) {
-        while (array[0] < array[1]) {
-            map[line][col] = boatSize + 48;
-            array[0]++;
+    find_pos(&line, &col, tab[1][0], tab[1][1]);
+    if (utils->first_pos < utils->second_pos) {
+        while (utils->first_pos < utils->second_pos + 1) {
+            map[line][col] = utils->boatSize + 48;
+            utils->first_pos++;
             line++;
         }
-    } else if (array[0] > array[1]) {
-        while (array[0] > array[1]) {
-            map[line][col] = boatSize + 48;
-            array[1]++;
+    } else if (utils->first_pos >utils->second_pos) {
+        while (utils->first_pos + 1 > utils->second_pos) {
+            map[line][col] = utils->boatSize + 48;
+            utils->second_pos++;
             line++;
         }
     }
     return map;
 }
 
-char **add_in_pos(char **tab, int boatSize, char **map)
+char **add_in_pos(char **tab, utils_t *utils, char **map)
 {
-    int first = tab[1][1] - 48;
-    int second = tab[2][1] - 48;
-    int array[2];
+    utils->first_pos = tab[1][1] - 48;
+    utils->second_pos = tab[2][1] - 48;
 
-    array[0] = first;
-    array[1] = second;
-    if ((tab[1][0] == tab[2][0]) && first != second) {
-        map = add_nbr(array, boatSize, tab, map);
-    } else if ((tab[1][0] != tab[2][0]) && first == second) {
-        map = add_letter(tab[1][0], tab[1][1], boatSize, map);
+    if ((tab[1][0] == tab[2][0]) && utils->first_pos != utils->second_pos) {
+        map = add_nbr(utils, tab, map);
+    } else if ((tab[1][0] != tab[2][0]) && utils->first_pos == utils->second_pos) {
+        map = add_letter(tab, utils, map);
     }
     return map;
 }

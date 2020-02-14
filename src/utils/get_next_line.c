@@ -5,68 +5,68 @@
 ** 2018
 */
 
-#include <stdlib.h>
 #include <zconf.h>
-#include "../../include/navy.h"
+#include "navy.h"
+#include <stdlib.h>
 
-char *do_realloc(char *result, char *buffer, int size, int i)
+char* my_realloc(char* ptr, size_t size)
 {
-    char *new_alloc = malloc(sizeof(char) * (my_strlen(result) + (size + 1)));
-    int	j = 0;
+    char* temp;
+    int i;
 
-    buffer[size] = '\0';
-    result[i] = '\0';
-    if (new_alloc == NULL)
-        return (NULL);
-    while (result[j] != '\0') {
-        new_alloc[j] = result[j];
-        j++;
+    temp = ptr;
+    ptr = malloc(size);
+    i = 0;
+    while(temp[i])
+    {
+        ptr[i] = temp[i];
+        i++;
     }
-    free(result);
-    return (new_alloc);
+    free(temp);
+    return (ptr);
 }
 
-int j_egal_zero(int *size, char *buffer, int fd, int *j)
+char get_char(const int fd)
 {
-    if (buffer[*j] == '\n')
-        *j += 1;
-    if (*j == 0) {
-        *size = read(fd, buffer, READ_SIZE);
-        if (*size == -1 || *size == 0)
-            return (84);
-        buffer[*size] = '\0';
-    }
-    return (0);
-}
+    static char buff[READ_SIZE];
+    static char* ptr_buff;
+    static int len = 0;
+    char c;
 
-int j_sup(int *size, char *buffer, int fd, int *j)
-{
-    *size = read(fd, buffer, READ_SIZE);
-    if (*size == -1 || *size == 0)
-        return (84);
-    *j = 0;
-    return (0);
+    if(len == 0)
+    {
+        len = read(fd, buff, READ_SIZE);
+        ptr_buff = (char*)&buff;
+        if(len == 0)
+            return (0);
+    }
+    c = *ptr_buff;
+    ptr_buff++;
+    len--;
+    return c;
 }
 
 char *get_next_line(int fd)
 {
-    static char	buffer[READ_SIZE + 1];
-    char *result = malloc(sizeof(char) * (READ_SIZE + 1));
-    static int	size = 0;
-    static int j = 0;
-    int	i = 0;
+    char c;
+    char* str;
+    int len;
 
-    j_egal_zero(&size, buffer, fd, &j);
-    while (buffer[j] != '\n' && size != 0) {
-        if (j >= size) {
-            j_sup(&size, buffer, fd, &j);
-            result = do_realloc(result, buffer, READ_SIZE, i);
-        } else if (j < size)
-            result[i++] = buffer[j++];
+    len = 0;
+    str = malloc(READ_SIZE + 1);
+    if (str == NULL)
+        return (0);
+    c = get_char(fd);
+    while(c != '\n' && c != '\0')
+    {
+        str[len] = c;
+        c = get_char(fd);
+        len++;
+        if(len % (READ_SIZE+1) == 0)
+            str = my_realloc(str, len + READ_SIZE + 1);
     }
-    if (buffer[j] == '\0')
-        return (NULL);
-    result[i] = '\0';
-    j++;
-    return (result);
+    str[len] = 0;
+    if(c == 0 && str[0] == 0)
+        return (0);
+    return (str);
 }

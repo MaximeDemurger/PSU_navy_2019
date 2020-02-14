@@ -12,11 +12,13 @@
 #define READ_SIZE 1024
 #endif
 
+#include "struct.h"
+
 /*src*/
 int navy(char **av);
 
 /*map*/
-char **add_in_pos(char **tab, int boatSize, char **map);
+char **add_in_pos(char **tab, utils_t *utils, char **map);
 char **map_navy(void);
 char **add_boat_pos(char **map, char **av);
 

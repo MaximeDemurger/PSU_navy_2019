@@ -9,22 +9,26 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int navy(char **av)
 {
-    char **my_pos = NULL;
+    utils_t *utils = malloc(sizeof(utils_t));
     int fd = 0;
     char **tab = NULL;
 
-    if (av[1] == NULL) {
+    if (av[1] == NULL)
         return 84;
-    }
     fd = open(av[1], O_RDONLY);
-    my_pos = map_navy();
-    if (!my_pos)
+    utils->my_position = map_navy();
+    utils->enemy_position = map_navy();
+    if (!utils->my_position || !utils->enemy_position || fd < 0)
         return 84;
     if ((tab = check_files(fd)) == NULL)
         return 84;
-    my_pos = add_boat_pos(my_pos, tab);
+    utils->my_position = add_boat_pos(utils->my_position, tab);
+    while (*utils->my_position) {
+        printf("%s\n", *utils->my_position++);
+    }
     return 0;
 }
