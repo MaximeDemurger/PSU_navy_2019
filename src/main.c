@@ -9,9 +9,9 @@
 
 int main(int ac, char **av)
 {
-    if (ac < 2)
+    if (ac < 3 && ac < 2)
         return 84;
-    if (navy(av) == 84)
+    if (navy(ac, av) == 84)
         return 84;
     return 0;
 }

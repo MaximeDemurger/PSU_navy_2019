@@ -81,7 +81,8 @@ char **add_in_pos(char **tab, utils_t *utils, char **map)
 
     if ((tab[1][0] == tab[2][0]) && utils->first_pos != utils->second_pos) {
         map = add_nbr(utils, tab, map);
-    } else if ((tab[1][0] != tab[2][0]) && utils->first_pos == utils->second_pos) {
+    } else if ((tab[1][0] != tab[2][0])
+        && utils->first_pos == utils->second_pos) {
         map = add_letter(tab, utils, map);
     }
     return map;

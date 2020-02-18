@@ -14,8 +14,12 @@
 
 #include "struct.h"
 
+
 /*src*/
-int navy(char **av);
+
+int navy(int ac, char **av);
+int serveur(void);
+int enemy_connection(int argc, char **argv);
 
 /*map*/
 char **add_in_pos(char **tab, utils_t *utils, char **map);
@@ -24,12 +28,18 @@ char **add_boat_pos(char **map, char **av);
 
 /*utils*/
 char **check_files(int fd);
-char *get_next_line(int fd);
 char *convert_to_string(int nb);
-char *my_revstr(char const *str);
-char **my_str_to_word_array(char const *str, char separator);
-int my_strlen(char const *str);
 int check_file_line(char **tab, int boatSize);
+
+/*lib*/
+char *my_revstr(char const *str);
+int my_put_nbr(int nb);
+int my_putstr(char const *str);
 char *my_strdup(char const *str);
+int my_strlen(char const *str);
+char **my_str_to_word_array(char const *str, char separator);
+char *get_next_line(int fd);
+int my_putchar(char c);
+int my_atoi(char const *stack);
 
 #endif //PSU_NAVY_2019_NAVY_H

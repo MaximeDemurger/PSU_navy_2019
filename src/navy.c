@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int navy(char **av)
+int navy(int ac, char **av)
 {
     utils_t *utils = malloc(sizeof(utils_t));
     int fd = 0;
@@ -19,6 +19,7 @@ int navy(char **av)
 
     if (av[1] == NULL)
         return 84;
+    enemy_connection(ac, av);
     fd = open(av[1], O_RDONLY);
     utils->my_position = map_navy();
     utils->enemy_position = map_navy();
@@ -28,7 +29,8 @@ int navy(char **av)
         return 84;
     utils->my_position = add_boat_pos(utils->my_position, tab);
     while (*utils->my_position) {
-        printf("%s\n", *utils->my_position++);
+        my_putstr(*utils->my_position++);
+        my_putchar('\n');
     }
     return 0;
 }

@@ -2,3 +2,5 @@ navy
 Screen_Capture.txt
 *vg*
 *.o
+.gitignore
+a.out
