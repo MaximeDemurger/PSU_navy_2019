@@ -11,7 +11,7 @@
 
 char *my_realloc(char *ptr, size_t size)
 {
-    char * temp;
+    char *temp;
     int i;
 
     temp = ptr;

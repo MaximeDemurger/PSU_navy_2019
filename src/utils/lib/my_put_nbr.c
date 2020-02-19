@@ -17,7 +17,8 @@ int my_put_nbr(int nb)
         nb = nb * (-1);
         stock = stock * (-1);
     } if (nb == -2147483648) {
-        write(1, "-2147483648", 11);
+        if (write(1, "-2147483648", 11) == -1)
+            return 84;
         return 0;
     } while (stock >= 10) {
         stock = stock / 10;

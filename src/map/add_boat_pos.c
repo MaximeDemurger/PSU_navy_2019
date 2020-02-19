@@ -35,6 +35,8 @@ char **add_letter(char **tab, utils_t *utils, char **map)
     int line = 0;
     int col = 0;
 
+    if (!tab || !utils || !map)
+        return NULL;
     find_pos(&line, &col, tab[1][0], tab[1][1]);
     if (tab[1][0] < tab[2][0]) {
         while (tab[1][0] < tab[2][0] + 1) {
@@ -57,6 +59,8 @@ char **add_nbr(utils_t *utils, char **tab, char **map)
     int line;
     int col;
 
+    if (!utils || !tab || !map)
+        return NULL;
     find_pos(&line, &col, tab[1][0], tab[1][1]);
     if (utils->first_pos < utils->second_pos) {
         while (utils->first_pos < utils->second_pos + 1) {
@@ -79,6 +83,8 @@ char **add_in_pos(char **tab, utils_t *utils, char **map)
     utils->first_pos = tab[1][1] - 48;
     utils->second_pos = tab[2][1] - 48;
 
+    if (!tab || !utils || !map)
+        return NULL;
     if ((tab[1][0] == tab[2][0]) && utils->first_pos != utils->second_pos) {
         map = add_nbr(utils, tab, map);
     } else if ((tab[1][0] != tab[2][0])

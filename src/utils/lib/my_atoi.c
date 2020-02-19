@@ -13,6 +13,7 @@ int my_atoi(char const *stack)
     int printer = 0;
     int mult = 1;
     int n = my_strlen(stack) - 1;
+
     if (!stack)
         return 84;
     if (stack[0] == '-') {
@@ -29,5 +30,5 @@ int my_atoi(char const *stack)
             mult = mult * 10;
         }
     }
-    return (printer);
+    return printer;
 }

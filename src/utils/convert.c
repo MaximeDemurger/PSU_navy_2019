@@ -14,7 +14,7 @@ char *convert_to_string(int nb)
     char *string = malloc(sizeof(char) * 3);
     int i = 0;
 
-    if (!nb)
+    if (!string)
         return NULL;
     if (nb == 0) {
         string[i] = '0';

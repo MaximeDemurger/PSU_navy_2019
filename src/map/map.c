@@ -12,15 +12,29 @@
 #include <stdlib.h>
 #include "navy.h"
 
+int print_map(utils_t *utils)
+{
+    if (my_putstr("my_position:\n") == 84)
+        return 84;
+    while (*utils->my_position) {
+        if (my_putstr(*utils->my_position++) == 84
+        || my_putchar('\n') == 84)
+            return 84;
+    }
+    return 0;
+}
+
 char **put_on_map(char *str, char **map)
 {
     utils_t *utils = malloc(sizeof(utils_t));
     char **tab = NULL;
 
-    if (!utils)
+    if (!utils || !str || !map)
         return NULL;
     utils->boatSize = str[0] - 48;
     tab = my_str_to_word_array(str, ':');
+    if (!tab)
+        return NULL;
     map = add_in_pos(tab, utils, map);
     return map;
 }

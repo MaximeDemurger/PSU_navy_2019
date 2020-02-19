@@ -6,7 +6,6 @@
 */
 
 #include "../include/navy.h"
-#include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,22 +14,12 @@ int navy(int ac, char **av)
 {
     utils_t *utils = malloc(sizeof(utils_t));
     int fd = 0;
-    char **tab = NULL;
 
-    if (av[1] == NULL)
+    if (av[1] == NULL || !utils)
         return 84;
-    enemy_connection(ac, av);
-    fd = open(av[1], O_RDONLY);
-    utils->my_position = map_navy();
-    utils->enemy_position = map_navy();
-    if (!utils->my_position || !utils->enemy_position || fd < 0)
+    if (enemy_connection(ac, av) == 84
+    || check_positions_boats(ac, av, fd, utils) == 84
+    || print_map(utils) == 84)
         return 84;
-    if ((tab = check_files(fd)) == NULL)
-        return 84;
-    utils->my_position = add_boat_pos(utils->my_position, tab);
-    while (*utils->my_position) {
-        my_putstr(*utils->my_position++);
-        my_putchar('\n');
-    }
     return 0;
 }

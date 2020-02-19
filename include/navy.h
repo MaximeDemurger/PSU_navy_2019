@@ -13,6 +13,7 @@
 #endif
 
 #include "struct.h"
+#include <unistd.h>
 
 
 /*src*/
@@ -25,6 +26,8 @@ int enemy_connection(int argc, char **argv);
 char **add_in_pos(char **tab, utils_t *utils, char **map);
 char **map_navy(void);
 char **add_boat_pos(char **map, char **av);
+int check_positions_boats(int ac, char **av, int fd, utils_t *utils);
+int print_map(utils_t *utils);
 
 /*utils*/
 char **check_files(int fd);

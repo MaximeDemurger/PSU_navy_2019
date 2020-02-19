@@ -59,6 +59,8 @@ int compare_pos(char **tab, int boatSize)
     int first = tab[1][1] - 48;
     int second = tab[2][1] - 48;
 
+    if (!tab)
+        return 84;
     if ((tab[1][0] == tab[2][0]) && first != second) {
         if (compare_nbr(first, second, boatSize) == 84)
             return 84;
@@ -75,7 +77,7 @@ int checkBoat_size(char *str)
     int boatSize = 0;
     char **tab = NULL;
 
-    if (str == NULL)
+    if (!str)
         return 84;
     if (!(tab = my_str_to_word_array(str, ':')))
         return 84;
@@ -93,6 +95,8 @@ char **check_files(int fd)
     char **tab = malloc(sizeof(char *) * 6);
     int i = 0;
 
+    if (!tab)
+        return NULL;
     while ((str = get_next_line(fd))) {
         if (checkBoat_size(str) == 84)
             return NULL;
