@@ -21,6 +21,14 @@ int print_map(utils_t *utils)
         || my_putchar('\n') == 84)
             return 84;
     }
+    my_putchar('\n');
+    if (my_putstr("enemy_position:\n") == 84)
+        return 84;
+    while (*utils->enemy_position) {
+        if (my_putstr(*utils->enemy_position++) == 84 ||
+        my_putchar('\n') == 84)
+            return 84;
+    }
     return 0;
 }
 

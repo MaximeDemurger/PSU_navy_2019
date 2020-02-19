@@ -13,10 +13,6 @@ int my_putstr(char const *str)
 
     if (!str)
         return 84;
-    while (str[i] != '\0') {
-        if (my_putchar(str[i]) == 84)
-            return 84;
-        i++;
-    }
+    write(1, str, my_strlen(str));
     return 0;
 }

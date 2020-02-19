@@ -8,12 +8,21 @@
 #ifndef PSU_NAVY_2019_STRUCT_H
 #define PSU_NAVY_2019_STRUCT_H
 
+#include <signal.h>
+
+typedef struct my_pid
+{
+    pid_t my_pid;
+    pid_t enemy_pid;
+} my_pid_t;
+
 typedef struct utils_s {
     int boatSize;
     int first_pos;
     int second_pos;
     char **my_position;
     char **enemy_position;
+    my_pid_t *pid;
 } utils_t;
 
 #endif //PSU_NAVY_2019_STRUCT_H

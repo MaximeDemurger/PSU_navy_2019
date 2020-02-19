@@ -19,8 +19,8 @@
 /*src*/
 
 int navy(int ac, char **av);
-int serveur(void);
-int enemy_connection(int argc, char **argv);
+int serveur(utils_t *utils);
+int enemy_connection(int argc, char **argv, utils_t *utils);
 
 /*map*/
 char **add_in_pos(char **tab, utils_t *utils, char **map);
@@ -44,5 +44,12 @@ char **my_str_to_word_array(char const *str, char separator);
 char *get_next_line(int fd);
 int my_putchar(char c);
 int my_atoi(char const *stack);
+int my_char_isalpha(char a);
+int my_char_isnum(char a);
+
+/* game */
+int game_loop(utils_t *utils, int ac);
+int player_move(utils_t *utils);
+int waiting_for_player(utils_t *utils);
 
 #endif //PSU_NAVY_2019_NAVY_H
