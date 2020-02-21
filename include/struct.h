@@ -22,6 +22,10 @@ typedef struct utils_s {
     int second_pos;
     char **my_position;
     char **enemy_position;
+    char receive_letter;
+    int receive_number;
+    int boat;
+    int hit;
     my_pid_t *pid;
 } utils_t;
 

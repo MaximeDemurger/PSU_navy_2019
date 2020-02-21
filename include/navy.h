@@ -46,10 +46,17 @@ int my_putchar(char c);
 int my_atoi(char const *stack);
 int my_char_isalpha(char a);
 int my_char_isnum(char a);
+int my_printf(char const *str, ...);
 
 /* game */
 int game_loop(utils_t *utils, int ac);
-int player_move(utils_t *utils);
+int player_move_1(utils_t *utils);
 int waiting_for_player(utils_t *utils);
+
+/* Signal game */
+int get_signal_usr1(utils_t *utils);
+int send_signal(utils_t *utils, char *str);
+void game_sig_two(int res_signal, utils_t *utils);
+int get_signal_usr2(utils_t *utils);
 
 #endif //PSU_NAVY_2019_NAVY_H

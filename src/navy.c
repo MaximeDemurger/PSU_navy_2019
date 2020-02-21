@@ -19,8 +19,9 @@ int navy(int ac, char **av)
     if (av[1] == NULL || !utils)
         return 84;
     if (enemy_connection(ac, av, utils) == 84
-    || check_positions_boats(ac, av, fd, utils) == 84 ||
-    game_loop(utils, ac) == 84)
+    || check_positions_boats(ac, av, fd, utils) == 84)
+        return 84;
+    if (game_loop(utils, ac) == 84)
         return 84;
     return 0;
 }

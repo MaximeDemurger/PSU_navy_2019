@@ -13,8 +13,8 @@ int game_loop(utils_t *utils, int ac)
     bool game_on = true;
     int turn = 0;
 
-    if (ac > 2)
-        turn++;
+    if (ac == 3)
+        turn = 1;
     while (game_on == true) {
         if (print_map(utils) == 84)
             return 84;
