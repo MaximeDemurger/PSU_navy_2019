@@ -20,7 +20,7 @@
 
 void send(int signal)
 {
-    printf("send %d\n\n", signal);
+    my_put_nbr(signal);
 }
 
 int check_input(char const *str)
