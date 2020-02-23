@@ -15,14 +15,13 @@ void handlering(int signal)
 
 int waiting_for_player(utils_t *utils)
 {
-    struct sigaction prepa_signal;
+    struct sigaction new;
 
-    my_putstr("\nwaiting for enemy's attack...\n");
-    prepa_signal.sa_handler = &handlering;
-    prepa_signal.sa_flags = SA_NODEFER;
-    sigemptyset(&prepa_signal.sa_mask);
-    sigaction(SIGUSR2, &prepa_signal, 0);
-    sigaction(SIGUSR1, &prepa_signal, 0);
+    my_putstr("\nwaiting for attack...\n");
+    new.sa_handler = &handlering;
+    while (sigaction(SIGUSR1, &new, 0) < 0)
+        usleep(1000);
+    kill(utils->pid->enemy_pid, SIGUSR1);
     pause();
     return (0);
 }

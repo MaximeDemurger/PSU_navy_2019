@@ -9,6 +9,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*void take_map_info(int signum)
+{
+    if (signum == SIGUSR1) {
+        the_best = 1;
+    } else if (signum == SIGUSR2) {
+        the_best = 0;
+    }
+}*/
+
+void send(int signal)
+{
+    printf("send %d\n\n", signal);
+}
+
 int check_input(char const *str)
 {
     int i = 0;
@@ -34,7 +48,7 @@ int player_move(utils_t *utils)
             my_putstr("attack: ");
         }
     }
-    prepa_signal.sa_handler = &handlering
-    sigaction(SIGUSR2, &prepa_signal, 0);
-        printf("Send with success\n\n");
+    if (kill(utils->pid->enemy_pid, SIGUSR1) == -1)
+        return 84;
+    return 0;
 }

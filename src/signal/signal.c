@@ -21,7 +21,7 @@ void handler(int signal)
 int serveur(utils_t *utils)
 {
     struct sigaction new;
-    
+
     utils->pid->my_pid = getpid();
     if (my_putstr("my_pid: ") == 84
     || my_put_nbr(utils->pid->my_pid) == 84
