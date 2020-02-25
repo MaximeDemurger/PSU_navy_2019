@@ -13,7 +13,7 @@
 #include <signal.h>
 #include <stdlib.h>
 
-void handler(int signal)
+void handler(void)
 {
     my_putstr("\nenemy connected\n\n");
 }
@@ -39,7 +39,7 @@ int serveur(utils_t *utils)
 
 int enemy_pos(char **argv, utils_t *utils)
 {
-    if (!argv) {
+    if (!argv || !utils) {
         return 84;
     }
     utils->pid->my_pid = getpid();
@@ -54,7 +54,7 @@ int enemy_pos(char **argv, utils_t *utils)
 
 int enemy_connection(int argc, char **argv, utils_t *utils)
 {
-    if (!argc)
+    if (!argc || !argv || !utils)
         return 84;
     if (argc < 3) {
         if (serveur(utils) == 84)

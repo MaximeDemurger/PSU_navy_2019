@@ -5,7 +5,6 @@
 ** 2018
 */
 
-#include <zconf.h>
 #include "navy.h"
 #include <stdlib.h>
 

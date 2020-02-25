@@ -22,10 +22,10 @@ int navy(int ac, char **av)
     enemy_connection(ac, av, utils) == 84)
         return 84;
     if (ac == 2) {
-        if (game_loop(utils, ac) == 84)
+        if (game_loop(utils) == 84)
             return 84;
     } else {
-        if (game_loop_2(utils, ac) == 84)
+        if (game_loop_2(utils) == 84)
             return 84;
     }
     return 0;

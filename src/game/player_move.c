@@ -25,8 +25,6 @@ void send(int signal)
 
 int check_input(char const *str)
 {
-    int i = 0;
-
     if (my_strlen(str) > 3)
         return -1;
     if (my_char_isalpha(str[0]) != 0)
@@ -41,7 +39,7 @@ int player_move(utils_t *utils)
     char *str = NULL;
 
     my_putstr("\nattack: ");
-    while ((str = get_next_line(0)) > 0) {
+    while ((str = get_next_line(0)) != NULL) {
         if (check_input(str) < 0) {
             my_putstr("wrong position\n");
             free(str);

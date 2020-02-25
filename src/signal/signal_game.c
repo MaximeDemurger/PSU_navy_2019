@@ -18,6 +18,7 @@ int send_signal(utils_t *utils, char *str)
         usleep(5000);
         ++a;
     }
+    printf("pute\n");
     kill(utils->pid->enemy_pid, 12);
     usleep(5000);
     while (j != str[1] + 48) {
@@ -48,7 +49,7 @@ void game_signal_two(int signal, utils_t *utils)
     usleep(25000);
 }
 
-void game_signal_one(utils_t *utils)
+void game_signal_one(void)
 {
     printf("receive\n");
     usleep(25000);

@@ -8,10 +8,9 @@
 #include <stdbool.h>
 #include "navy.h"
 
-int game_loop_2(utils_t *utils, int ac)
+int game_loop_2(utils_t *utils)
 {
     bool game_on = true;
-    int turn = 0;
 
     if (print_map(utils) == 84)
             return 84;
@@ -25,10 +24,9 @@ int game_loop_2(utils_t *utils, int ac)
     return 0;
 }
 
-int game_loop(utils_t *utils, int ac)
+int game_loop(utils_t *utils)
 {
     bool game_on = true;
-    int turn = 0;
 
     while (game_on == true) {
         if (print_map(utils) == 84)
