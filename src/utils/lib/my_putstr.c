@@ -9,8 +9,6 @@
 
 int my_putstr(char const *str)
 {
-    int i = 0;
-
     if (!str)
         return 84;
     write(1, str, my_strlen(str));

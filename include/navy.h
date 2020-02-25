@@ -50,7 +50,8 @@ int my_printf(char const *str, ...);
 
 /* game */
 int game_loop(utils_t *utils, int ac);
-int player_move_1(utils_t *utils);
+int game_loop_2(utils_t *utils, int ac);
+int player_move(utils_t *utils);
 int waiting_for_player(utils_t *utils);
 
 /* Signal game */

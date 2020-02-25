@@ -31,7 +31,6 @@ int modifying_map(utils_t *utils, char a, char b)
 
 int interpret_signal(utils_t *utils)
 {
-    char a = 'A';
     char b = '2';
 
     while (utils->receive_number > 0)

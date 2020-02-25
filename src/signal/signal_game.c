@@ -5,6 +5,7 @@
 ** signal game
 */
 
+#include <stdio.h>
 #include "navy.h"
 
 int send_signal(utils_t *utils, char *str)
@@ -26,7 +27,7 @@ int send_signal(utils_t *utils, char *str)
     }
     kill(utils->pid->enemy_pid, 12);
     usleep(5000);
-    return (0);
+    return 0;
 }
 
 void game_signal_two(int signal, utils_t *utils)
@@ -47,9 +48,9 @@ void game_signal_two(int signal, utils_t *utils)
     usleep(25000);
 }
 
-void game_signal_one(int signal, utils_t *utils)
+void game_signal_one(utils_t *utils)
 {
-    // Je sais pas ce qu'il faut mettre la lol
+    printf("receive\n");
     usleep(25000);
 }
 
@@ -63,7 +64,7 @@ int get_signal_usr2(utils_t *utils)
     sigaction(SIGUSR2, &get_signal, 0);
     sigaction(SIGUSR1, &get_signal, 0);
     pause();
-    return (0);
+    return 0;
 }
 
 int get_signal_usr1(utils_t *utils)
@@ -76,5 +77,5 @@ int get_signal_usr1(utils_t *utils)
     sigaction(SIGUSR2, &get_signal, 0);
     sigaction(SIGUSR1, &get_signal, 0);
     pause();
-    return (0);
+    return 0;
 }

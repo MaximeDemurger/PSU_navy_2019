@@ -25,7 +25,7 @@ int player_move(utils_t *utils)
     char *str = NULL;
 
     my_putstr("\nattack: ");
-    while ((str = get_next_line(0))) {
+    while ((str = get_next_line(0)) > 0) {
         if (check_input(str) < 0) {
             my_putstr("wrong position\n");
             free(str);
