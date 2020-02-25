@@ -31,20 +31,6 @@ int modifying_map(utils_t *utils, char a, char b)
 
 int interpret_signal(utils_t *utils)
 {
-<<<<<<< HEAD
-=======
-    struct sigaction new;
-
-    my_putstr("\nwaiting for attack...\n");
-    new.sa_handler = &handlering;
-    while (sigaction(SIGUSR1, &new, 0) < 0)
-        usleep(1000);
-    kill(utils->pid->enemy_pid, SIGUSR1);
-    pause();
-    return (0);
-
-    char a = 'A';
->>>>>>> bcba274ab4f2a83955394da915fc2ed0d3bb16a9
     char b = '2';
 
     while (utils->receive_number > 0)

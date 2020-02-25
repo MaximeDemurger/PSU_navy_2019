@@ -29,6 +29,7 @@ char **map_navy(void);
 char **add_boat_pos(char **map, char **av);
 int check_positions_boats(int ac, char **av, int fd, utils_t *utils);
 int print_map(utils_t *utils);
+int compare_pos(char **tab, int boatSize);
 
 /*utils*/
 char **check_files(int fd);
