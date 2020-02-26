@@ -23,15 +23,12 @@ int navy(int ac, char **av)
         return 84;
     if (game_loop(utils, ac) == 84)
         return 84;
-<<<<<<< HEAD
-=======
     if (ac == 2) {
-        if (game_loop(utils) == 84)
+        if (game_loop(utils, ac) == 84)
             return 84;
     } else {
-        if (game_loop_2(utils) == 84)
+        if (game_loop_2(utils, ac) == 84)
             return 84;
     }
->>>>>>> 28fb50650114bbb687356332061c58b6f1511044
     return 0;
 }
