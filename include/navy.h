@@ -21,11 +21,7 @@
 int navy(int ac, char **av);
 int serveur(utils_t *utils);
 int enemy_connection(int argc, char **argv, utils_t *utils);
-<<<<<<< HEAD
 void handler(int signal, utils_t *utils, siginfo_t *info);
-=======
-void handler(void);
->>>>>>> 28fb50650114bbb687356332061c58b6f1511044
 
 /*map*/
 char **add_in_pos(char **tab, utils_t *utils, char **map);
@@ -55,8 +51,7 @@ int my_char_isnum(char a);
 int my_printf(char const *str, ...);
 
 /* game */
-int game_loop(utils_t *utils);
-int game_loop_2(utils_t *utils);
+int game_loop(utils_t *utils, int ac);
 int player_move(utils_t *utils);
 int waiting_for_player(utils_t *utils);
 
