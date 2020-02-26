@@ -16,7 +16,7 @@
 void handler(int signal, utils_t *utils, siginfo_t *info)
 {
     my_putstr("\nenemy connected\n\n");
-    //utils->pid->enemy_pid = info->si_pid;
+    utils->pid->enemy_pid = info->si_pid;
     usleep(5000);
 }
 
