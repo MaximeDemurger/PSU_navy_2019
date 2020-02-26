@@ -18,7 +18,12 @@ int send_signal(utils_t *utils, char *str)
         usleep(5000);
         a++;
     }
+<<<<<<< HEAD
     kill(utils->pid->enemy_pid, SIGUSR2);
+=======
+    printf("pute\n");
+    kill(utils->pid->enemy_pid, 12);
+>>>>>>> 28fb50650114bbb687356332061c58b6f1511044
     usleep(5000);
     while (b <= str[1]) {
         kill(utils->pid->enemy_pid, SIGUSR1);
@@ -48,6 +53,28 @@ void game_signal_one(int signal, utils_t *utils)
     usleep(25000);
 }
 
+<<<<<<< HEAD
+=======
+void game_signal_one(void)
+{
+    printf("receive\n");
+    usleep(25000);
+}
+
+int get_signal_usr2(utils_t *utils)
+{
+    struct sigaction get_signal;
+
+    get_signal.sa_handler = &game_signal_two;
+    get_signal.sa_flags = SA_NODEFER;
+    sigemptyset(&get_signal.sa_mask);
+    sigaction(SIGUSR2, &get_signal, 0);
+    sigaction(SIGUSR1, &get_signal, 0);
+    pause();
+    return 0;
+}
+
+>>>>>>> 28fb50650114bbb687356332061c58b6f1511044
 int get_signal_usr1(utils_t *utils)
 {
     struct sigaction get_signal;

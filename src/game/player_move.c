@@ -16,8 +16,6 @@ void send(int signal)
 
 int check_input(char const *str)
 {
-    int i = 0;
-
     if (my_strlen(str) > 3)
         return -1;
     if (my_char_isalpha(str[0]) != 0)
