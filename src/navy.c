@@ -18,15 +18,10 @@ int navy(int ac, char **av)
 
     if (av[1] == NULL || !utils)
         return 84;
-    if (check_positions_boats(ac, av, fd, utils) == 84 ||
-    enemy_connection(ac, av, utils) == 84)
+    if (enemy_connection(ac, av, utils) == 84 ||
+    check_positions_boats(ac, av, fd, utils) == 84)
         return 84;
-    if (ac == 2) {
-        if (game_loop(utils, ac) == 84)
-            return 84;
-    } else {
-        if (game_loop_2(utils, ac) == 84)
-            return 84;
-    }
+    if (game_loop(utils, ac) == 84)
+        return 84;
     return 0;
 }

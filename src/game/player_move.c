@@ -9,15 +9,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*void take_map_info(int signum)
-{
-    if (signum == SIGUSR1) {
-        the_best = 1;
-    } else if (signum == SIGUSR2) {
-        the_best = 0;
-    }
-}*/
-
 void send(int signal)
 {
     my_put_nbr(signal);
@@ -41,14 +32,15 @@ int player_move(utils_t *utils)
     char *str = NULL;
 
     my_putstr("\nattack: ");
-    while ((str = get_next_line(0)) > 0) {
+    while ((str = get_next_line(0)) != NULL) {
         if (check_input(str) < 0) {
             my_putstr("wrong position\n");
             free(str);
             my_putstr("attack: ");
+        } else {
+            //send_signal(utils, str);
+            return 0;
         }
     }
-    if (kill(utils->pid->enemy_pid, SIGUSR1) == -1)
-        return 84;
     return 0;
 }
