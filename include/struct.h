@@ -13,7 +13,8 @@
 typedef struct my_pid
 {
     pid_t my_pid;
-    pid_t enemy_pid;
+    int enemy_pid;
+    int global_value;
 } my_pid_t;
 
 typedef struct utils_s {

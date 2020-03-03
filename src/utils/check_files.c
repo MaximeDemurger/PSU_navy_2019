@@ -25,6 +25,17 @@ int checkBoat_size(char *str)
     return 0;
 }
 
+int check_map_diag(char *str)
+{
+    int digit = 0;
+
+    if (str[2] != str[5])
+        digit = 1;
+    if (digit == 1 && str[3] != str[6])
+        return (-1);
+    return 0;
+}
+
 int check_map_validity(char const *str, int size)
 {
     if (str[0] != size + 48)
@@ -54,7 +65,8 @@ char **check_files(int fd)
     if (!tab)
         return NULL;
     while ((str = get_next_line(fd))) {
-        if (check_map_validity(str, size) == -1)
+        if (check_map_validity(str, size) == -1 ||
+            check_map_diag(str) == -1)
             return NULL;
         if (checkBoat_size(str) == 84)
             return NULL;

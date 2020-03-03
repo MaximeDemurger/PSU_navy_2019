@@ -36,7 +36,7 @@ int player_move(utils_t *utils)
             free(str);
             my_putstr("attack: ");
         } else {
-            //send_signal(utils, str);
+            send_signal(utils, str);
             return 0;
         }
     }

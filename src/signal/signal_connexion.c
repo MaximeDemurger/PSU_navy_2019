@@ -13,16 +13,19 @@
 #include <signal.h>
 #include <stdlib.h>
 
-void handler(int signal, utils_t *utils, siginfo_t *info)
+int global_var;
+
+void handler(int signal, siginfo_t *info, void *x)
 {
     my_putstr("\nenemy connected\n\n");
     //utils->pid->enemy_pid = info->si_pid;
     usleep(5000);
+    global_var = info->si_pid;
 }
 
 int serveur(utils_t *utils)
 {
-    struct sigaction new;
+    struct sigaction s;
 
     utils->pid->my_pid = getpid();
     if (my_putstr("my_pid: ") == 84
@@ -30,12 +33,12 @@ int serveur(utils_t *utils)
     || my_putchar('\n') == 84
     || my_putstr("waiting for enemy connection...\n") == 84)
         return 84;
-    new.sa_handler = (void*)handler;
-    sigemptyset(&new.sa_mask);
-    new.sa_flags = SA_SIGINFO;
-    while (sigaction(SIGUSR1, &new, 0) < 0)
-        usleep(1000);
+    s.sa_sigaction = handler;
+    s.sa_flags = SA_SIGINFO;
+    sigemptyset(&s.sa_mask);
+    sigaction(SIGUSR1, &s, 0);
     pause();
+    utils->pid->enemy_pid = global_var;
     return 0;
 }
 
