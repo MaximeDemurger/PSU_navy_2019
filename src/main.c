@@ -8,8 +8,11 @@
 #include "../include/navy.h"
 #include <stdlib.h>
 
+utils_t *utils;
+
 int main(int ac, char **av)
 {
+    utils = malloc(sizeof(utils_t));
     if (ac == 2 || ac == 3) {
         if (navy(ac, av) == 84)
             return 84;

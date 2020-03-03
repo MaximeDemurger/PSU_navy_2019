@@ -10,9 +10,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+utils_t *utils;
+
 int navy(int ac, char **av)
 {
-    utils_t *utils = malloc(sizeof(utils_t));
     utils->pid = malloc(sizeof(my_pid_t));
     int fd = 0;
 

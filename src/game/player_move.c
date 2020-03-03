@@ -29,6 +29,8 @@ int player_move(utils_t *utils)
 {
     char *str = NULL;
 
+    utils->receive_letter = 0;
+    utils->receive_number = 0;
     my_putstr("\nattack: ");
     while ((str = get_next_line(0)) != NULL) {
         if (check_input(str) < 0) {

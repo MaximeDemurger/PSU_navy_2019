@@ -42,6 +42,6 @@ int interpret_signal(utils_t *utils)
 int waiting_for_player(utils_t *utils)
 {
     get_signal_usr1(utils);
-    interpret_signal(utils);
+    //interpret_signal(utils);
     return 0;
 }
