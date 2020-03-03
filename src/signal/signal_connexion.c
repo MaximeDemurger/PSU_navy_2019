@@ -18,6 +18,8 @@ int global_var;
 void handler(int signal, siginfo_t *info, void *x)
 {
     my_putstr("\nenemy connected\n\n");
+    //utils->pid->enemy_pid = info->si_pid;
+    usleep(5000);
     global_var = info->si_pid;
 }
 
