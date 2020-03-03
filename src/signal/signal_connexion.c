@@ -13,7 +13,7 @@
 #include <signal.h>
 #include <stdlib.h>
 
-int global_var = 0;
+int global_var;
 
 void handler(int signal, siginfo_t *info, void *x)
 {
@@ -35,8 +35,8 @@ int serveur(utils_t *utils)
     s.sa_flags = SA_SIGINFO;
     sigemptyset(&s.sa_mask);
     sigaction(SIGUSR1, &s, 0);
-    utils->pid->enemy_pid = global_var;
     pause();
+    utils->pid->enemy_pid = global_var;
     return 0;
 }
 

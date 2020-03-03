@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include "navy.h"
 
+utils_t utils;
+
 int send_signal(utils_t *utils, char *str)
 {
     char a = 'A';
@@ -30,15 +32,18 @@ int send_signal(utils_t *utils, char *str)
     return 0;
 }
 
-void game_signal_one(int signal, utils_t *utils)
+void game_signal_one(int signal, siginfo_t *info, void *x)
 {
     static int change = 0;
 
     if (signal == SIGUSR1) {
-        if (change == 0)
-            utils->receive_letter++;
-        else if (change == 1)
-            utils->receive_number++;
+        if (change == 0) {
+            printf("letter %d\n", utils.receive_letter);
+            utils.receive_letter++;
+        } else if (change == 1) {
+            printf("number %d\n", utils.receive_number);
+            utils.receive_number++;
+        }
     } else if (signal == SIGUSR2) {
         change++;
         if (change == 2) {
@@ -52,13 +57,10 @@ int get_signal_usr1(utils_t *utils)
 {
     struct sigaction get_signal;
 
-    get_signal.sa_handler = (void*)game_signal_one;
+    get_signal.sa_sigaction = game_signal_one;
     sigemptyset(&get_signal.sa_mask);
     get_signal.sa_flags = 0;
-    while (sigaction(SIGUSR1, &get_signal, 0) < 0)
-        usleep(1000);
-    while (sigaction(SIGUSR2, &get_signal, 0) < 0)
-        usleep(1000);
+    sigaction(SIGUSR1, &get_signal, 0);
     pause();
     return 0;
 }

@@ -21,7 +21,6 @@
 int navy(int ac, char **av);
 int serveur(utils_t *utils);
 int enemy_connection(int argc, char **argv, utils_t *utils);
-void handler(int signal, siginfo_t *info, void *x);
 
 /*map*/
 char **add_in_pos(char **tab, utils_t *utils, char **map);
