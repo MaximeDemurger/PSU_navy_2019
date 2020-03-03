@@ -27,6 +27,7 @@ typedef struct utils_s {
     int receive_number;
     int boat;
     int hit;
+    int hit;
     int letter;
     int number;
     my_pid_t *pid;

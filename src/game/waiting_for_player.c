@@ -8,40 +8,68 @@
 #include "navy.h"
 #include <stdio.h>
 
-int modifying_map(utils_t *utils, char a, char b)
+int touch_board_enemies(utils_t *utils, int x, int y)
 {
-    int col = 2;
-    int line = 2;
-
-    while (utils->my_position[0][col] != a)
-        col++;
-    while (utils->my_position[line][0] != b)
-        line++;
-    if (utils->my_position[line][col] != '.') {
-        utils->my_position[line][col] = 'x';
-        my_printf("%c%c: hit\n", a, b);
+    if (utils->enemy_position[x][y] = '.') {
+        utils->enemy_position[x][y] = 'o';
+        utils->hit = 0;
     } else {
-        utils->my_position[line][col] = 'o';
-        my_printf("%c%c: missed\n", a, b);
+        utils->enemy_position[x][y] = 'x';
+        utils->hit = 1;
     }
-    utils->receive_number = 0;
-    utils->receive_letter = 0;
+}
+
+int find_position_enemies(utils_t *utils)
+{
+    int x = 1;
+    int y = 1;
+    int letter = 0;
+    int number = 0;
+
+    while (letter <= utils->receive_letter) {
+        x += 2;
+        letter++;
+    }
+    while (number <= utils->receive_number) {
+        y++;
+        number++;
+    }
+    touch_board_enemies(utils, x, y);
     return 0;
 }
 
-int interpret_signal(utils_t *utils)
+int touch_board(utils_t *utils, int x, int y)
 {
-    char b = '2';
+    if (utils->my_position[x][y] = '.') {
+        utils->my_position[x][y] = 'o';
+        utils->hit = 0;
+    } else {
+        utils->my_position[x][y] = 'x';
+        utils->hit = 1;
+    }
+}
 
-    while (utils->receive_number > 0)
-        b++;
-    modifying_map(utils, utils->receive_letter, b);
+int find_position(utils_t *utils)
+{
+    int x = 1;
+    int y = 1;
+    int number = 0;
+    int letter = 0;
+
+    while (letter <= utils->receive_letter) {
+        x += 2;
+        letter++;;
+    }
+    while (number != utils->receive_number) {
+        y++;
+        number++;
+    }
+    touch_board(utils, x, y);
     return 0;
 }
 
 int waiting_for_player(utils_t *utils)
 {
     get_signal_usr1(utils);
-    //interpret_signal(utils);
     return 0;
 }

@@ -52,6 +52,10 @@ int my_printf(char const *str, ...);
 /* game */
 int game_loop(utils_t *utils, int ac);
 int player_move(utils_t *utils);
+int find_position(utils_t *utils);
+int touch_board(utils_t *utils, int x, int y);
+int find_position_enemies(utils_t *utils);
+int touch_board_enemies(utils_t *utils, int x, int y);
 int waiting_for_player(utils_t *utils);
 
 /* Signal game */
