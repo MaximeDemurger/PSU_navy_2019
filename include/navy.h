@@ -52,16 +52,17 @@ int my_printf(char const *str, ...);
 /* game */
 int game_loop(utils_t *utils, int ac);
 int player_move(utils_t *utils);
-int find_position(utils_t *utils);
+int find_position(int *line, int *col);
+int display_hit(int hit);
+int send_touch(utils_t *utils);
+int get_touch(void);
+int check_hit(utils_t *utils, char *str);
 int touch_board(utils_t *utils, int x, int y);
-int find_position_enemies(utils_t *utils);
-int touch_board_enemies(utils_t *utils, int x, int y);
 int waiting_for_player(utils_t *utils);
+int hit_or_not(utils_t *utils, int x, int y);
 
 /* Signal game */
-int get_signal_usr1(utils_t *utils);
+int get_signal_usr1(void);
 int send_signal(utils_t *utils, char *str);
-void game_sig_two(int res_signal, utils_t *utils);
-int get_signal_usr2(utils_t *utils);
 
 #endif //PSU_NAVY_2019_NAVY_H

@@ -9,11 +9,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void send(int signal)
-{
-    my_put_nbr(signal);
-}
-
 int check_input(char const *str)
 {
     if (my_strlen(str) > 3)
@@ -39,6 +34,8 @@ int player_move(utils_t *utils)
             my_putstr("attack: ");
         } else {
             send_signal(utils, str);
+            get_touch();
+            check_hit(utils, str);
             return 0;
         }
     }

@@ -15,14 +15,10 @@ int send_signal(utils_t *utils, char *str)
     utils->letter = str[0] - 65;
     utils->number = str[1] - 48;
 
-    printf("letter %d\n", utils->letter);
-    printf("number %c\n", str[1]);
-    while (utils->letter >= 0) {
+    while (utils->letter > 0) {
         kill(utils->pid->enemy_pid, SIGUSR1);
         usleep(5000);
         utils->letter--;
-        printf("letter\n");
-        usleep(5000);
     }
     kill(utils->pid->enemy_pid, SIGUSR2);
     usleep(5000);
@@ -30,10 +26,10 @@ int send_signal(utils_t *utils, char *str)
         kill(utils->pid->enemy_pid, SIGUSR1);
         usleep(5000);
         utils->number--;
-        printf("number\n");
     }
     kill(utils->pid->enemy_pid, SIGUSR2);
     usleep(5000);
+    return 0;
 }
 
 void game_signal_one(int signal)
@@ -42,11 +38,9 @@ void game_signal_one(int signal)
 
     if (signal == SIGUSR1) {
         if (change == 0) {
-            printf("letter %d\n", utils.receive_letter);
             utils.receive_letter++;
             usleep(25000);
         } else if (change == 1) {
-            printf("number %d\n", utils.receive_number);
             utils.receive_number++;
             usleep(25000);
         }
@@ -59,7 +53,7 @@ void game_signal_one(int signal)
     usleep(25000);
 }
 
-int get_signal_usr1(utils_t *utils)
+int get_signal_usr1(void)
 {
     struct sigaction get_signal;
 
