@@ -38,19 +38,10 @@ int check_map_diag(char *str)
 
 int check_map_validity(char const *str, int size)
 {
-    if (str[0] != size + 48)
-        return (-1);
-    if (str[1] != ':')
-        return (-1);
-    if (str[2] > 'H' || str[2] < 'A')
-        return -1;
-    if (str[3] > '8' || str[3] < '1')
-        return -1;
-    if (str[4] != ':')
-        return (-1);
-    if (str[5] > 'H' || str[5] < 'A')
-        return -1;
-    if (str[6] > '8' || str[6] < '1')
+    if ((str[0] != size + 48) && str[1] != ':' &&
+        (str[2] > 'H' || str[2] < 'A') && (str[3] > '8' || str[3] < '1') &&
+        str[4] != ':' && (str[5] > 'H' || str[5] < 'A') &&
+        (str[6] > '8' || str[6] < '1'))
         return -1;
     return 0;
 }

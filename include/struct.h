@@ -33,6 +33,7 @@ typedef struct utils_s {
     int line;
     int col;
     int touched;
+    int win;
 } utils_t;
 
 #endif //PSU_NAVY_2019_STRUCT_H

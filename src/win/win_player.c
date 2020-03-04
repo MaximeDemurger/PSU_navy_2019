@@ -40,9 +40,9 @@ int print_win(void)
     return 0;
 }
 
-void get_win(int signal)
+void get_winable(int signal)
 {
-    if (signal == SIGUSR1) {
+    if (signal == SIGUSR2) {
         win++;
         usleep(5000);
     }
@@ -52,13 +52,13 @@ int get_win_player(void)
 {
     struct sigaction get_win;
 
-    get_win.sa_handler = &get_win;
-    get_win.sa_flags = 0;
+    get_win.sa_handler = &get_winable;
+    get_win.sa_flags = SA_NODEFER;
     sigemptyset(&get_win.sa_mask);
-    sigaction(SIGUSR1, &get_win, 0);
-    pause();
+    sigaction(SIGUSR2, &get_win, 0);
     if (print_win() == 1)
         return 1;
+    pause();
     return 0;
 }
 
@@ -66,14 +66,16 @@ int send_win(utils_t *utils)
 {
     win_player(utils);
     if (utils->win == 0) {
-        kill(utils->pid->enemy_pid, SIGUSR1);
+        kill(utils->pid->enemy_pid, SIGUSR2);
         usleep(5000);
     } else {
-        kill(utils->pid->enemy_pid, SIGUSR1);
+        kill(utils->pid->enemy_pid, SIGUSR2);
         usleep(5000);
-        kill(utils->pid->enemy_pid, SIGUSR1);
+        kill(utils->pid->enemy_pid, SIGUSR2);
         usleep(5000);
         my_printf("Enemy won\n");
+        return 1;
     }
+    usleep(25000);
     return 0;
 }
