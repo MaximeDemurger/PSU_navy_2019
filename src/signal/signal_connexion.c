@@ -17,7 +17,7 @@ int global_var;
 
 void handler(int signal, siginfo_t *info, void *x)
 {
-    my_putstr("\nenemy connected\n\n");
+    my_putstr("\nenemy connected\n");
     global_var = info->si_pid;
 }
 

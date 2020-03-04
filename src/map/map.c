@@ -16,7 +16,7 @@ int print_map(utils_t *utils)
 {
     int i = 0;
 
-    if (my_putstr("my_position:\n") == 84)
+    if (my_putstr("\nmy positions:\n") == 84)
         return 84;
     while (utils->my_position[i]) {
         if (my_putstr(utils->my_position[i++]) == 84
@@ -24,7 +24,7 @@ int print_map(utils_t *utils)
             return 84;
     }
     my_putchar('\n');
-    if (my_putstr("enemy_position:\n") == 84)
+    if (my_putstr("enemy's positions:\n") == 84)
         return 84;
     i = 0;
     while (utils->enemy_position[i]) {

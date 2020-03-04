@@ -10,7 +10,7 @@
 
 utils_t utils;
 
-int display_hit(int hit)
+int display_hit1(int hit)
 {
     char letter = utils.receive_letter + 65;
 
@@ -48,7 +48,7 @@ int find_position(int *line, int *col)
 {
     int letter = utils.receive_letter;
     int number = utils.receive_number;
-    
+
     *col = 2;
     *line = 1;
     while (letter > 0) {

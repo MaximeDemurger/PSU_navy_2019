@@ -53,7 +53,7 @@ int my_printf(char const *str, ...);
 int game_loop(utils_t *utils, int ac);
 int player_move(utils_t *utils);
 int find_position(int *line, int *col);
-int display_hit(int hit);
+int display_hit1(int hit);
 int send_touch(utils_t *utils);
 int get_touch(void);
 int check_hit(utils_t *utils, char *str);
