@@ -59,7 +59,7 @@ int enemy_connection(int argc, char **argv, utils_t *utils)
     if (!argc)
         return 84;
     if (argc < 3) {
-        if (serveur(utils) == 84)
+        if (server(utils) == 84)
             return 84;
     }
     if (argc == 3) {
