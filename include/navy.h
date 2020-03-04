@@ -61,11 +61,15 @@ int touch_board(utils_t *utils, int x, int y);
 int waiting_for_player(utils_t *utils);
 int hit_or_not(utils_t *utils, int x, int y);
 
-/*win*/
 int get_win_player(void);
 int send_win(utils_t *utils);
 void get_win(int signal);
 int win_player(utils_t *utils);
+
+/* win */
+int send_win(utils_t *utils);
+int get_win_player(void);
+
 /* Signal game */
 int get_signal_usr1(void);
 int send_signal(utils_t *utils, char *str);
