@@ -21,7 +21,7 @@ void handler(int signal, siginfo_t *info, void *x)
     global_var = info->si_pid;
 }
 
-int serveur(utils_t *utils)
+int server(utils_t *utils)
 {
     struct sigaction s;
 
