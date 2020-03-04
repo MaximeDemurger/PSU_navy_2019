@@ -24,7 +24,6 @@ int game_loop(utils_t *utils, int ac)
             both_player_played = 0;
         } if (turn == 0) {
             player_move(utils);
-            get_win_player();
             turn++;
         } else {
             waiting_for_player(utils);

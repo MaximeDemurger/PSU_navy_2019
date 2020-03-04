@@ -19,6 +19,5 @@ int waiting_for_player(utils_t *utils)
     touch_board(utils, line, col);
     display_hit1(utils->hit);
     send_touch(utils);
-    send_win(utils);
     return 0;
 }
