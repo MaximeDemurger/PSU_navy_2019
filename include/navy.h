@@ -32,8 +32,9 @@ int compare_pos(char **tab, int boatSize);
 
 /*utils*/
 char **check_files(int fd);
-char *convert_to_string(int nb);
+int descriptor(void);
 int check_file_line(char **tab, int boatSize);
+char *convert_to_string(int nb);
 
 /*lib*/
 char *my_revstr(char const *str);

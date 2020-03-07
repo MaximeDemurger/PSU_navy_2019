@@ -11,11 +11,8 @@
 
 int check_input(char const *str)
 {
-    if (my_strlen(str) > 3)
-        return -1;
-    if (my_char_isalpha(str[0]) != 0)
-        return -1;
-    if (my_char_isnum(str[1]) != 0)
+    if (my_strlen(str) >= 3 || my_char_isalpha(str[0]) != 0 ||
+        my_char_isnum(str[1]) != 0)
         return -1;
     return 0;
 }

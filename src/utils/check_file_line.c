@@ -21,7 +21,7 @@ int check_positions_boats(int ac, char **av, int fd, utils_t *utils)
         fd = open(av[2], O_RDONLY);
     utils->my_position = map_navy();
     utils->enemy_position = map_navy();
-    if (!utils->my_position || !utils->enemy_position || fd < 0)
+    if (!utils->my_position || !utils->enemy_position || !fd)
         return 84;
     if ((tab = check_files(fd)) == NULL)
         return 84;
