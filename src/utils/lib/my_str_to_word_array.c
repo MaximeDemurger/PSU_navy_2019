@@ -56,8 +56,6 @@ char **my_str_to_word_array(char const *str, char separator)
     int caract = 0;
     char **tab = malloc_line(str, separator);
 
-    if (!str)
-        return NULL;
     while (str[index] != '\0') {
         if (str[index] == separator && str[index + 1] != separator) {
             tab[ligne][caract] = '\n';
@@ -69,8 +67,7 @@ char **my_str_to_word_array(char const *str, char separator)
             tab[ligne][caract] = str[index];
             caract++;
         } index++;
-    }
-    tab[ligne][caract] = '\0';
+    } tab[ligne][caract] = '\0';
     ligne++;
     tab[ligne] = NULL;
     return tab;

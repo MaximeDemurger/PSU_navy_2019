@@ -22,7 +22,7 @@ SRCS	= ./src/game/find_position.c \
 	  ./src/map/map_navy.c \
 	  ./src/navy.c \
 	  ./src/signal/hit_or_not.c \
-	  ./src/signal/signal_connexion.c \
+	  ./src/signal/signal_connection.c \
 	  ./src/signal/signal_game.c \
 	  ./src/utils/check_file_line.c \
 	  ./src/utils/check_files.c \

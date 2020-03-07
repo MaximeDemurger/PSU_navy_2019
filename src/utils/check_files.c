@@ -10,7 +10,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-int checkBoat_size(char *str)
+int check_boat_size(char *str)
 {
     int boatSize = 0;
     char **tab = NULL;
@@ -59,7 +59,7 @@ char **check_files(int fd)
         if (check_map_validity(str, size) == -1 ||
             check_map_diag(str) == -1)
             return NULL;
-        if (checkBoat_size(str) == 84)
+        if (check_boat_size(str) == 84)
             return NULL;
         tab[i] = my_strdup(str);
         i++;
